@@ -1,19 +1,25 @@
 <template>
   <nav-comp/>
   <router-view/>
-  <footer-Comp/>
+  <footer-comp/>
 </template>
 
 <script>
 import NavComp from './components/NavComp.vue';
 import FooterComp from './components/FooterComp.vue'
+
 export default {
   components:{
     NavComp,
     FooterComp
   },
   computed:{
-    
+    getData(){
+      this.$store.dispatch('getData')
+    }
+  },
+  mounted(){
+    this.getData
   }
 }
 </script>
