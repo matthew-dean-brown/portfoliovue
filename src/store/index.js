@@ -2,8 +2,11 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 export default createStore({
   state: {
-    home:"",
-    about:""
+    home:null,
+    about:null,
+    projects:null,
+    resume:null,
+    testimonials:null
   },
   getters: {
   },
@@ -18,10 +21,11 @@ export default createStore({
   actions: {
     getData(context){
       axios.get('https://matthew-dean-brown.github.io/portfolioData/')
-        .then(data=>{
-          console.log(data);
-          let [home, about] = data.data.data
-          context.commit('setHome', home.home)
+        .then(res=>{
+          console.log(res.data.data);
+          let [home, about] = res.data.data
+
+          context.commit('setHome', home.home)      
           context.commit('setAbout', about.about)
         })
     }
