@@ -19,14 +19,19 @@ export default createStore({
     }
   },
   actions: {
-    getData(context){
+   getData({commit}){
       axios.get('https://matthew-dean-brown.github.io/portfolioData/')
-        .then(res=>{
-          console.log(res.data.data);
-          let [home, about] = res.data.data
+        .then(res=>{console.log(res);
+      // let response = await fetch('https://matthew-dean-brown.github.io/portfolioData/')
+      // let razien = await response.json()
+      // fetch('https://matthew-dean-brown.github.io/portfolioData/')
+      // .then(response => response.json())
+      // .then(razien => console.log(razien.data))
+      
+      let [home, about] = res.data.data
 
-          context.commit('setHome', home.home)      
-          context.commit('setAbout', about.about)
+          commit('setHome', home.home)      
+          commit('setAbout', about.about)
         })
     }
   }
